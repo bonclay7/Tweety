@@ -4,5 +4,16 @@
     <string name="app_name">Tweety</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_search">Recherche</string>
+    <string name="action_follow">Suivre un utilisateur</string>
+    <string name="welcome_text">Bienvenue sur l\'application Tweety !</string>
+    <string name="button_connect">Connexion</string>
+    <string name="button_subscribe">Creer un compte</string>
+    <string name="handle">Login</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">Connexion</string>
+    <string name="required">Requis</string>
+    <string name="login_success">Connexion réussie !</string>
+    <string name="login_error">Connexion échouée, veuillez réessayer</string>
 
 </resources>
