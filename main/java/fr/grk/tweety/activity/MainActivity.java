@@ -1,9 +1,11 @@
 package fr.grk.tweety.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 import fr.grk.tweety.R;
@@ -17,6 +19,32 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchLogin();
+            }
+        });
+
+        findViewById(R.id.signin_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchSignIn();
+            }
+        });
+
+    }
+
+    private void launchLogin(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void launchSignIn() {
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
     }
 
 

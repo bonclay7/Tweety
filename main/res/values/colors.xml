@@ -2,7 +2,7 @@
 <resources>
     <color name="material_red_500" >#fff00307</color>
     <color name="material_red_700" >#ff740305</color>
-    <color name="material_pink_A200" >#ffe1007c</color>
+    <color name="material_accent_A200" >#ffff1207</color>
     <color name="backgroud_light_grey">#FFC7C1C3</color>
     <color name="backgroud_dark_grey">#ff62585c</color>
 </resources>

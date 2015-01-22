@@ -1,4 +1,4 @@
-package fr.grk.tweety.activity;
+package fr.grk.tweety.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;

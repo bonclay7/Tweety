@@ -2,6 +2,7 @@ package fr.grk.tweety.utils;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -32,6 +33,7 @@ public class ApiClient {
     private static final String LOG_TAG = "API_CLIENT";
     private static final String API_BASE = "http://54.148.197.52:8080/MicroBlogging/api/";
     private static int TIMEOUT_VALUE = 10000;
+    private static final String HOST_ID = Build.DEVICE+"-"+Build.VERSION.SDK_INT;
 
 
     public String login(String handle, String password) throws IOException {
@@ -46,11 +48,11 @@ public class ApiClient {
 
         HttpPost request = new HttpPost(url);
         request.addHeader(new BasicHeader("password", password));
+        request.addHeader(new BasicHeader("hostID", HOST_ID));
 
-        HttpResponse result = null;
+
         HttpClient client = new DefaultHttpClient(httpParameters);
-
-        result = client.execute(request);
+        HttpResponse result = client.execute(request);
 
 
         if (result.getStatusLine().getStatusCode() == 200) {

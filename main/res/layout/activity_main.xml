@@ -38,7 +38,7 @@
         style="?android:borderlessButtonStyle"
         />
     <Button
-        android:id="@+id/create_account_button"
+        android:id="@+id/signin_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="bottom|left"

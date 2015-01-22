@@ -15,5 +15,13 @@
     <string name="required">Requis</string>
     <string name="login_success">Connexion réussie !</string>
     <string name="login_error">Connexion échouée, veuillez réessayer</string>
+    <string name="title_activity_connection">Connection</string>
+    <string name="title_activity_sign_in">S\'enregistrer</string>
+    <string name="password_confirm">Confirmation</string>
+    <string name="email">e-mail</string>
+    <string name="picture_url">Url Photo</string>
+    <string name="connecting">Connexion en cours ...</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

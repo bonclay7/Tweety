@@ -4,10 +4,11 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/material_red_500</item>
         <item name="colorPrimaryDark">@color/material_red_700</item>
-        <item name="colorAccent">@color/material_pink_A200</item>
+        <item name="colorAccent">@color/material_accent_A200</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+
 
     <!-- Divider -->
     <style name="Divider">
