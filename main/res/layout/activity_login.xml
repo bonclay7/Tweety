@@ -15,6 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding"
+        android:text="bonclay7"
+        style="@style/Edit"
         android:layout_marginBottom="5dp"><requestFocus/></EditText>
 
     <EditText
@@ -23,6 +25,8 @@
         android:inputType="textPassword"
         android:layout_margin="@dimen/padding"
         android:layout_width="match_parent"
+        android:text="aqwzsxedc"
+        style="@style/Edit"
         android:textColor="@android:color/darker_gray"
         android:layout_height="wrap_content"/>
 

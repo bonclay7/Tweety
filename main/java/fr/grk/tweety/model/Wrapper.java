@@ -1,11 +1,23 @@
 package fr.grk.tweety.model;
 
+import java.util.List;
+
 /**
  * Created by grk on 22/01/15.
  */
 public class Wrapper {
     private String server;
     private Session session;
+    private List<Tweet> tweets;
+
+
+    public List<Tweet> getTweets() {
+        return tweets;
+    }
+
+    public void setTweets(List<Tweet> tweets) {
+        this.tweets = tweets;
+    }
 
     public String getServer() {
         return server;

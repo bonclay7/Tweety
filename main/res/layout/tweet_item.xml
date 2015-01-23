@@ -4,15 +4,27 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/padding">
 
+
+    <TextView
+        android:id="@+id/handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+
     <TextView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+        android:layout_below="@id/handle"
         android:padding="12dp"
-        android:typeface="serif"
+        android:textColor="@android:color/black"
         android:background="@drawable/tweet_background"
         android:textAppearance="?android:textAppearanceMedium" />
+
 
     <TextView
         android:id="@+id/date"
@@ -20,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/content"
         android:gravity="end"
-        android:textAppearance="?android:textAppearanceSmall" />
+        android:textColor="@android:color/black"
+        android:textAppearance="?android:dateTextAppearance" />
 
 </RelativeLayout>
