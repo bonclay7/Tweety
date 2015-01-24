@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -45,18 +46,27 @@ public class HomeActivity extends ActionBarActivity implements PostTweetFragment
 
     @Override
     public void readingListChanged() {
-        /*
-        ReadingListFragment readingListFragment = (ReadingListFragment) getSupportFragmentManager().findFragmentById(R.id.reading_list_fragment);
-        if (readingListFragment != null){
+        //*
 
-        }
-        */
+        //*/
+
+        //*
+
+        ReadingListFragment readingListFragment = (ReadingListFragment) getSupportFragmentManager().findFragmentById(R.id.users_list);
+        Log.e("HOME", readingListFragment.toString());
+
+        readingListFragment.reloadList();
+
+        /*
         ReadingListFragment newFragment = new ReadingListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.reading_list_fragment, newFragment);
+        //transaction.replace(R.id.users_list, newFragment);
+        transaction.remove(readingListFragment);
+        transaction.add(R.id.users_list, newFragment);
+
         //transaction.addToBackStack(null);
         transaction.commit();
-
+        //*/
 
 
     }
