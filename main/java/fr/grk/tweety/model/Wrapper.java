@@ -9,6 +9,7 @@ public class Wrapper {
     private String server;
     private Session session;
     private List<Tweet> tweets;
+    private List<User> stats;
 
 
     public List<Tweet> getTweets() {
@@ -33,5 +34,13 @@ public class Wrapper {
 
     public void setSession(Session session) {
         this.session = session;
+    }
+
+    public List<User> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<User> stats) {
+        this.stats = stats;
     }
 }

@@ -7,7 +7,26 @@ public class User {
 
     private String handle;
     private String picture;
-    private String email;
+    //private String email;
+    private int followers;
+    private int follows;
+
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
+
+    public int getFollows() {
+        return follows;
+    }
+
+    public void setFollows(int follows) {
+        this.follows = follows;
+    }
 
     public String getHandle() {
         return handle;
@@ -25,11 +44,5 @@ public class User {
         this.picture = picture;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

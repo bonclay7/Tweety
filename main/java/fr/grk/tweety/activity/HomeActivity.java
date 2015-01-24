@@ -20,6 +20,7 @@ import android.widget.TextView;
 import fr.grk.tweety.R;
 import fr.grk.tweety.fragment.PostTweetFragment;
 import fr.grk.tweety.fragment.ReadingListFragment;
+import fr.grk.tweety.fragment.UsersFragment;
 
 public class HomeActivity extends ActionBarActivity implements PostTweetFragment.OnTweetPostedListener, ActionBar.TabListener {
 
@@ -134,13 +135,8 @@ public class HomeActivity extends ActionBarActivity implements PostTweetFragment
             switch (i) {
                 case 0:
                     return new ReadingListFragment();
-                default:
-                    // The other sections of the app are dummy placeholders.
-                    Fragment fragment = new DummySectionFragment();
-                    Bundle args = new Bundle();
-                    args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
-                    fragment.setArguments(args);
-                    return fragment;
+                default :
+                    return new UsersFragment();
             }
         }
 
@@ -152,7 +148,12 @@ public class HomeActivity extends ActionBarActivity implements PostTweetFragment
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Section " + (position + 1);
+            switch (position) {
+                case 0:
+                    return "Timeline";
+                default:
+                    return "Decouverte";
+            }
         }
     }
 

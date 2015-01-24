@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -18,11 +19,13 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.grk.tweety.model.Tweet;
+import fr.grk.tweety.model.User;
 import fr.grk.tweety.model.Wrapper;
 
 /**
@@ -135,12 +138,14 @@ public class ApiClient {
 
     //String executePost(String url, Lis)
 
-    /*
+    //*
     public List<User> getUsers() throws IOException{
-        InputStream stream = new URL(API_BASE + "users").openStream();
+        InputStream stream = new URL(API_BASE + "followings").openStream();
         String response = IOUtils.toString(stream);
-        return (new Gson().fromJson(response, Wrapper.class)).getUsers();
+        return (new Gson().fromJson(response, Wrapper.class)).getStats();
     }
+
+    /*
 
 
     public List<Tweet> getUserTweets(String handle) throws IOException{
