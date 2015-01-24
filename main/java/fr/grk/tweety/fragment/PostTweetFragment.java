@@ -22,7 +22,7 @@ import fr.grk.tweety.utils.AccountManager;
 import fr.grk.tweety.utils.ApiClient;
 
 
-public class PostTweetFragment extends DialogFragment implements DialogInterface.OnShowListener {
+public class PostTweetFragment extends DialogFragment implements DialogInterface.OnShowListener, DialogInterface.OnDismissListener {
     private static final int LOADER_TWEETS = 10;
     private static final String ARG_USER = "user";
 
@@ -30,7 +30,26 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
     private String mToken;
 
     private EditText mMessageText;
+    private boolean postSucceed = false;
 
+    private OnTweetPostedListener mCallback;
+
+
+    public interface OnTweetPostedListener {
+        public void readingListChanged();
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mCallback = (OnTweetPostedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnTweetPostedListener");
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +87,16 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
         });
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (postSucceed) updateParentList();
+    }
+
+    private void updateParentList(){
+
+    }
+
     public void postTweet() {
         String message = mMessageText.getText().toString();
 
@@ -94,12 +123,14 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
             }
 
             @Override
-            protected void onPostExecute(Boolean postSucceed) {
-                if (postSucceed) {
+            protected void onPostExecute(Boolean resultOK) {
+                if (resultOK) {
                     Fragment target = getTargetFragment();
                     if (target != null) {
                         target.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, null);
                     }
+                    mCallback.readingListChanged();
+                    postSucceed = true;
                     dismiss();
                 } else {
                     Toast.makeText(getActivity(), R.string.login_error, Toast.LENGTH_SHORT).show();

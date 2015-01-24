@@ -51,7 +51,7 @@ public class LoginActivity extends ActionBarActivity {
 
 
     private void login(){
-        final String handle = mHandleText.getText().toString();
+        final String handle = mHandleText.getText().toString().trim();
         String password = mPasswordText.getText().toString();
 
         if (handle.isEmpty()) {

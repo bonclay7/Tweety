@@ -1,10 +1,12 @@
 package fr.grk.tweety.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +75,14 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
     public void onLoaderReset(Loader<List<Tweet>> loader) {
 
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        Log.e("READING_LIST", "called");
+    }
+
 
 
     public void post() {
