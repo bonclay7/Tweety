@@ -37,6 +37,10 @@
             android:name="fr.grk.tweety.activity.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name="fr.grk.tweety.activity.TweetsActivity"
+            android:label="@string/title_activity_tweets" >
+        </activity>
     </application>
 
 </manifest>

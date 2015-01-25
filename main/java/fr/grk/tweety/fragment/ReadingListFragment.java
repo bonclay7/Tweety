@@ -37,6 +37,7 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.e("TEST", getTag());
         return inflater.inflate(R.layout.fragment_reading_list, container, false);
     }
 

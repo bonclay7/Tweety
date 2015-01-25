@@ -1,10 +1,7 @@
 package fr.grk.tweety.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
@@ -17,6 +14,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import fr.grk.tweety.R;
+import fr.grk.tweety.activity.TweetsActivity;
 import fr.grk.tweety.adapters.UsersAdapter;
 import fr.grk.tweety.loaders.UsersLoader;
 import fr.grk.tweety.model.User;
@@ -41,12 +39,12 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //mIsMasterDetailsMode = (getActivity().findViewById(R.id.tweet_content) != null);
+        mIsMasterDetailsMode = (getActivity().findViewById(R.id.tweet_content) != null);
         mListAdapter = new UsersAdapter();
         setListAdapter(mListAdapter);
-        //if (mIsMasterDetailsMode){
-        //    getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        //}
+        if (mIsMasterDetailsMode) {
+            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        }
 
 
     }
@@ -66,7 +64,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
 
     @Override
     public void onLoadFinished(Loader<List<User>> loader, List<User> data) {
-        mListAdapter.setUsers(data);
+        mListAdapter.setUsers(data, getActivity());
     }
 
     @Override
@@ -74,7 +72,8 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
 
     }
 
-    /*
+
+    //*
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         //super.onListItemClick(l, v, position, id);
@@ -94,14 +93,11 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
         }
     }
 
-    private void post() {
-        if (AccountManager.isConnected(getActivity())) {
-
-        } else {
-            new LoginFragment().show(getFragmentManager(), "login_dialog");
-        }
-
+    public void reloadList() {
+        getLoaderManager().restartLoader(0, null, this);
     }
-    */
+
+
+    //*/
 }
 

@@ -21,8 +21,9 @@ import fr.grk.tweety.R;
 import fr.grk.tweety.fragment.PostTweetFragment;
 import fr.grk.tweety.fragment.ReadingListFragment;
 import fr.grk.tweety.fragment.UsersFragment;
+import fr.grk.tweety.utils.ReloadFragmentInterface;
 
-public class HomeActivity extends ActionBarActivity implements PostTweetFragment.OnTweetPostedListener, ActionBar.TabListener {
+public class HomeActivity extends ActionBarActivity implements ReloadFragmentInterface, ActionBar.TabListener {
 
 
     private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
@@ -101,10 +102,31 @@ public class HomeActivity extends ActionBarActivity implements PostTweetFragment
 
     @Override
     public void readingListChanged() {
-        ReadingListFragment readingListFragment = (ReadingListFragment) getSupportFragmentManager().findFragmentById(R.id.pager);
-        Log.e("HOME", readingListFragment.toString());
 
-        readingListFragment.reloadList();
+        //ReadingListFragment readingListFragment = (ReadingListFragment) getSupportFragmentManager().findFragmentById(R.id.pager);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof  ReadingListFragment){
+                ((ReadingListFragment) fragment).reloadList();
+            }
+        }
+        //ViewPager pager = (ViewPager) getSupportFragmentManager().findFragmentById(R.id.reading_list_fragment);
+
+        //getSupportFragmentManager().findFragmentByTag()
+        //Log.e("HOME", readingListFragment.toString());
+
+        //readingListFragment.reloadList();
+
+    }
+
+    @Override
+    public void discoverListChanged() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof  ReadingListFragment){
+                ((ReadingListFragment) fragment).reloadList();
+            }else if (fragment instanceof UsersFragment){
+                ((UsersFragment) fragment).reloadList();
+            }
+        }
     }
 
 

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 import fr.grk.tweety.model.User;
+import fr.grk.tweety.utils.AccountManager;
 import fr.grk.tweety.utils.ApiClient;
 
 /**
@@ -28,7 +29,7 @@ public class UsersLoader extends AsyncTaskLoader<List<User>> {
     @Override
     public List<User> loadInBackground() {
         try {
-            return new ApiClient().getUsers();
+            return new ApiClient().getUsers(AccountManager.getUserHandle(getContext()));
         } catch (IOException e) {
             Log.e(UsersLoader.class.getName(), "Failed to download users", e);
             return null;
