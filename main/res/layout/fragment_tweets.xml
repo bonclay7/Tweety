@@ -36,7 +36,6 @@
                     android:textAppearance="?android:textAppearanceSmall"
                     android:textStyle="bold"
                     style="@style/ActionButton.CloseMode.Tweety"
-                    android:background="@drawable/ab_transparent_tweety"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
@@ -48,7 +47,6 @@
                     android:textStyle="bold"
                     android:text="15\nfollowings"
                     style="@style/ActionButton.CloseMode.Tweety"
-                    android:background="@drawable/ab_transparent_tweety"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
@@ -58,6 +56,13 @@
 
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@drawable/ab_transparent_tweety"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content"/>
 
     <ListView android:id="@android:id/list"
         android:layout_width="match_parent"

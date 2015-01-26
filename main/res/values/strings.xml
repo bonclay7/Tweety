@@ -35,4 +35,5 @@
     <string name="tweeties" type="id">Timeline</string>
     <string name="discover" type="id">Decouverte</string>
     <string name="title_activity_tweets">Tweets</string>
+    <string name="title_activity_followers">Followers</string>
 </resources>

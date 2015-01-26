@@ -1,5 +1,6 @@
 package fr.grk.tweety.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -19,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import fr.grk.tweety.R;
+import fr.grk.tweety.activity.FollowersActivity;
 import fr.grk.tweety.activity.TweetsActivity;
 import fr.grk.tweety.adapters.TweetsAdapter;
 import fr.grk.tweety.loaders.TweetsLoader;
@@ -77,24 +79,48 @@ public class TweetsFragment extends ListFragment implements LoaderManager.Loader
         profilePictureView = (ImageView) view.findViewById(R.id.profile_picture);
         Picasso.with(view.getContext()).load(mUser.getPicture()).into(profilePictureView);
 
-        //followings count
-        followingsButton = (Button) view.findViewById(R.id.followings_button);
-        followingsButton.setText(getString(R.string.followings_count_button, mUser.getFollows()));
-
-        followingsButton.setFocusable(true);
-        followingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), getString(R.string.followings_count_button, mUser.getFollows()), Toast.LENGTH_LONG);
-            }
-        });
-
         //followers count
         followersButton = (Button) view.findViewById(R.id.followers_button);
         followersButton.setText(getString(R.string.followers_count_button, mUser.getFollowers()));
 
+        followersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionShowFollowers();
+            }
+        });
+
+        //followings count
+        followingsButton = (Button) view.findViewById(R.id.followings_button);
+        followingsButton.setText(getString(R.string.followings_count_button, mUser.getFollows()));
+
+        followingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionShowFollowings();
+            }
+        });
+    }
 
 
+    public void actionShowFollowers(){
+        if (mUser.getFollowers() > 0){
+            Intent intent = new Intent(getActivity(), FollowersActivity.class);
+            intent.putExtras(FollowFragment.newArguments(mUser, AccountManager.P_USERS_TYPE_FOLLOWERS));
+            startActivity(intent);
+        }else{
+            Toast.makeText(getActivity(), "Please help "+ mUser.getHandle()+" !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void actionShowFollowings(){
+        if (mUser.getFollows() > 0){
+            Intent intent = new Intent(getActivity(), FollowersActivity.class);
+            intent.putExtras(FollowFragment.newArguments(mUser, AccountManager.P_USERS_TYPE_FOLLOWINGS));
+            startActivity(intent);
+        }else{
+            Toast.makeText(getActivity(), "Please help "+ mUser.getHandle()+" !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

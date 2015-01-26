@@ -10,7 +10,16 @@ public class Wrapper {
     private Session session;
     private List<Tweet> tweets;
     private List<User> stats;
+    private List<User> users;
 
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public List<Tweet> getTweets() {
         return tweets;

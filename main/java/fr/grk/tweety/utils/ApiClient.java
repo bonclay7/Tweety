@@ -146,6 +146,18 @@ public class ApiClient {
         return (new Gson().fromJson(response, Wrapper.class)).getStats();
     }
 
+    public List<User> getFollowers(String handle) throws IOException{
+        InputStream stream = new URL(API_BASE + ":" +handle+ "/followers").openStream();
+        String response = IOUtils.toString(stream);
+        return (new Gson().fromJson(response, Wrapper.class)).getUsers();
+    }
+
+    public List<User> getFollowings(String handle) throws IOException{
+        InputStream stream = new URL(API_BASE + ":" +handle+ "/followings").openStream();
+        String response = IOUtils.toString(stream);
+        return (new Gson().fromJson(response, Wrapper.class)).getUsers();
+    }
+
 
     public boolean follow(String handle, String followeeHandle, String token) throws IOException{
         HttpParams httpParameters = new BasicHttpParams();

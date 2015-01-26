@@ -74,7 +74,6 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
     @Override
     public void onLoaderReset(Loader<List<Tweet>> loader) {
         mListAdapter.notifyDataSetChanged();
-        Log.e("READING_LIST", "here");
     }
 
     @Override
@@ -87,7 +86,6 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
     public void reloadList(){
         getLoaderManager().restartLoader(0, null, this);
     }
-
 
 
     public void post() {

@@ -42,6 +42,11 @@
             android:label="@string/title_activity_tweets"
             android:parentActivityName="fr.grk.tweety.activity.HomeActivity">
         </activity>
+        <activity
+            android:name="fr.grk.tweety.activity.FollowersActivity"
+            android:label="@string/title_activity_followers"
+            android:parentActivityName="fr.grk.tweety.activity.HomeActivity">
+        </activity>
     </application>
 
 </manifest>
