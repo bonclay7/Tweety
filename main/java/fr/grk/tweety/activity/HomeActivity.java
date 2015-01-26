@@ -101,6 +101,9 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
 
         switch (id){
             case R.id.action_settings:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
             case R.id.action_details:
                 showUserDetails();
