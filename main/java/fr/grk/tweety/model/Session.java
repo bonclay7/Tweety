@@ -4,17 +4,17 @@ package fr.grk.tweety.model;
  * Created by grk on 22/01/15.
  */
 public class Session {
-    private String handle;
+    private User user;
     private String token;
     private String creationDate;
     private String status;
 
-    public String getHandle() {
-        return handle;
+    public User getUser() {
+        return user;
     }
 
-    public void setHandle(String handle) {
-        this.handle = handle;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getToken() {

@@ -1,26 +1,32 @@
 package fr.grk.tweety.activity;
 
 
-import android.support.v7.app.ActionBar;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import fr.grk.tweety.R;
-import fr.grk.tweety.fragment.PostTweetFragment;
 import fr.grk.tweety.fragment.ReadingListFragment;
+import fr.grk.tweety.fragment.TweetsFragment;
 import fr.grk.tweety.fragment.UsersFragment;
+import fr.grk.tweety.model.User;
+import fr.grk.tweety.utils.AccountManager;
+import fr.grk.tweety.utils.ApiClient;
 import fr.grk.tweety.utils.ReloadFragmentInterface;
 
 public class HomeActivity extends ActionBarActivity implements ReloadFragmentInterface, ActionBar.TabListener {
@@ -28,6 +34,7 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
 
     private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private ProgressDialog progressDialog;
     private static final int TABS_COUNT = 2;
 
     @Override
@@ -92,12 +99,64 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_settings:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            case R.id.action_details:
+                showUserDetails();
+                return true;
+            default :
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showUserDetails(){
+        final Context context = this;
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(context.getString(R.string.connecting));
+        progressDialog.show();
+
+        new AsyncTask<String, Void, User>() {
+
+            @Override
+            protected User doInBackground(String... params) {
+                try {
+                    String handle = params[0];
+                    return new ApiClient().getUser(handle);
+                } catch (IOException e) {
+                    Log.e(HomeActivity.class.toString(), "follow failed", e);
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(User user) {
+                progressDialog.dismiss();
+                if (user != null){
+                    Intent intent = new Intent(context, TweetsActivity.class);
+                    intent.putExtras(TweetsFragment.newArguments(user));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(context, R.string.login_error, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                progressDialog.dismiss();
+            }
+        }.execute(AccountManager.getUserHandle(context));
+
+
     }
 
     @Override
@@ -105,7 +164,7 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
 
         //ReadingListFragment readingListFragment = (ReadingListFragment) getSupportFragmentManager().findFragmentById(R.id.pager);
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            if (fragment instanceof  ReadingListFragment){
+            if (fragment instanceof ReadingListFragment) {
                 ((ReadingListFragment) fragment).reloadList();
             }
         }
@@ -121,9 +180,9 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
     @Override
     public void discoverListChanged() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            if (fragment instanceof  ReadingListFragment){
+            if (fragment instanceof ReadingListFragment) {
                 ((ReadingListFragment) fragment).reloadList();
-            }else if (fragment instanceof UsersFragment){
+            } else if (fragment instanceof UsersFragment) {
                 ((UsersFragment) fragment).reloadList();
             }
         }
@@ -157,7 +216,7 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
             switch (i) {
                 case 0:
                     return new ReadingListFragment();
-                default :
+                default:
                     return new UsersFragment();
             }
         }

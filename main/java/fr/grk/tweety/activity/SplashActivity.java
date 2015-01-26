@@ -1,59 +1,51 @@
 package fr.grk.tweety.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 
 import fr.grk.tweety.R;
-import fr.grk.tweety.utils.AccountManager;
+
+public class SplashActivity extends ActionBarActivity {
 
 
-public class MainActivity extends ActionBarActivity {
+    private static int SPLASH_TIME_OUT = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main);
 
-        findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
+
+            /*
+             * Showing splash screen with a timer. This will be useful when you
+             * want to show case your app logo / company
+             */
+
             @Override
-            public void onClick(View v) {
-                launchLogin();
+            public void run() {
+                // This method will be executed once the timer is over
+                // Start your app main activity
+                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(i);
+
+                // close this activity
+                finish();
             }
-        });
+        }, SPLASH_TIME_OUT);
 
-        findViewById(R.id.signin_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchSignIn();
-            }
-        });
-
-    }
-
-    private void launchLogin(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void launchSignIn() {
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivity(intent);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_splash, menu);
         return true;
     }
 

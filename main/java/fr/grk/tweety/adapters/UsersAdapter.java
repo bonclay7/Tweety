@@ -1,7 +1,9 @@
 package fr.grk.tweety.adapters;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -111,7 +113,19 @@ public class UsersAdapter extends BaseAdapter {
         unfollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               unfollow(user.getHandle());
+                new AlertDialog.Builder(context)
+                        .setTitle(R.string.confirm)
+                        .setMessage(context.getString(R.string.unfollow_confirm, user.getHandle()))
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                unfollow(user.getHandle());
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .show();
+
+
             }
         });
 
@@ -166,6 +180,11 @@ public class UsersAdapter extends BaseAdapter {
                 }
             }
 
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                progressDialog.dismiss();
+            }
         }.execute(AccountManager.getUserHandle(context), followeeHandle, AccountManager.getUserToken(context));
     }
 
@@ -200,6 +219,12 @@ public class UsersAdapter extends BaseAdapter {
                 } else {
                     Toast.makeText(context, R.string.login_error, Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                progressDialog.dismiss();
             }
 
         }.execute(AccountManager.getUserHandle(context), followeeHandle, AccountManager.getUserToken(context));
