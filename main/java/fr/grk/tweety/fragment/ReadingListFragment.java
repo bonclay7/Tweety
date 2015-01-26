@@ -15,7 +15,7 @@ import java.util.List;
 
 import fr.grk.tweety.R;
 import fr.grk.tweety.adapters.TweetsAdapter;
-import fr.grk.tweety.loaders.TweetsLoader;
+import fr.grk.tweety.loaders.ReadingListLoader;
 import fr.grk.tweety.model.Tweet;
 import fr.grk.tweety.utils.AccountManager;
 
@@ -62,7 +62,7 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public Loader<List<Tweet>> onCreateLoader(int id, Bundle args) {
-        return new TweetsLoader(getActivity(), mUserHandle, mToken);
+        return new ReadingListLoader(getActivity(), mUserHandle, mToken);
     }
 
     @Override
@@ -74,7 +74,6 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
     @Override
     public void onLoaderReset(Loader<List<Tweet>> loader) {
         mListAdapter.notifyDataSetChanged();
-        Log.e("READING_LIST", "here");
     }
 
     @Override
@@ -87,7 +86,6 @@ public class ReadingListFragment extends ListFragment implements LoaderManager.L
     public void reloadList(){
         getLoaderManager().restartLoader(0, null, this);
     }
-
 
 
     public void post() {
