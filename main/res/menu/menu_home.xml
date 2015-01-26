@@ -4,7 +4,7 @@
     tools:context="fr.grk.tweety.activity.HomeActivity">
 
     <!-- Follow button -->
-    <item android:id="@+id/action_follow"
+    <item android:id="@+id/action_details"
         android:icon="@drawable/ic_action_person"
         android:title="@string/action_follow"
         tweety:showAsAction="ifRoom" />

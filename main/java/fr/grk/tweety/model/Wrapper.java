@@ -8,10 +8,19 @@ import java.util.List;
 public class Wrapper {
     private String server;
     private Session session;
+    private User user;
     private List<Tweet> tweets;
     private List<User> stats;
     private List<User> users;
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public List<User> getUsers() {
         return users;
