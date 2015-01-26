@@ -1,6 +1,7 @@
 package fr.grk.tweety.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 
 import fr.grk.tweety.R;
@@ -19,6 +20,10 @@ public class TweetsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tweets_activity);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //*
         if (savedInstanceState == null) {
             TweetsFragment tweetsFragment = new TweetsFragment();
             tweetsFragment.setArguments(getIntent().getExtras());
@@ -27,6 +32,7 @@ public class TweetsActivity extends ActionBarActivity {
                     .add(R.id.content, tweetsFragment)
                     .commit();
         }
+        //*/
 
     }
 }

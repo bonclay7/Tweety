@@ -95,6 +95,12 @@ public class UsersAdapter extends BaseAdapter {
         ImageButton followButton = (ImageButton) convertView.findViewById(R.id.action_follow);
         ImageButton unfollowButton = (ImageButton) convertView.findViewById(R.id.action_unfollow);
 
+        followButton.setFocusable(false);
+        followButton.setFocusableInTouchMode(false);
+
+        unfollowButton.setFocusable(false);
+        unfollowButton.setFocusableInTouchMode(false);
+
 
         followButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,13 +108,14 @@ public class UsersAdapter extends BaseAdapter {
                 follow(user.getHandle());
             }
         });
-
         unfollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                unfollow(user.getHandle());
             }
         });
+
+
 
 
         if (user.isFollowed()) {

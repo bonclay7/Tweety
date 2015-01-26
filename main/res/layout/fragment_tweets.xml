@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reading_list_fragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+
+        <TableLayout
+            android:layout_below="@+id/profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <Button
+                    android:id="@+id/followers_button"
+                    android:layout_width="0dp"
+                    android:clickable="true"
+                    android:layout_marginLeft="16dp"
+                    android:text="120\nfollowers"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    style="@style/ActionButton.CloseMode.Tweety"
+                    android:background="@drawable/ab_transparent_tweety"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/followings_button"
+                    android:layout_width="0dp"
+                    android:clickable="true"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:text="15\nfollowings"
+                    style="@style/ActionButton.CloseMode.Tweety"
+                    android:background="@drawable/ab_transparent_tweety"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+    </RelativeLayout>
+
+    <ListView android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

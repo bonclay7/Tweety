@@ -206,6 +206,14 @@ public class ApiClient {
         }
     }
 
+
+
+    public List<Tweet> getUserTweets(String handle) throws IOException {
+        InputStream stream = new URL(API_BASE + ":" + handle +  "/tweets/").openStream();
+        String response = IOUtils.toString(stream);
+        return new Gson().fromJson(response, Wrapper.class).getTweets();
+    }
+
     /*
 
 

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_users, container, false);
     }
 
@@ -42,9 +42,9 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
         mIsMasterDetailsMode = (getActivity().findViewById(R.id.tweet_content) != null);
         mListAdapter = new UsersAdapter();
         setListAdapter(mListAdapter);
-        if (mIsMasterDetailsMode) {
-            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        }
+        //if (mIsMasterDetailsMode) {
+            //getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        //}
 
 
     }
@@ -76,6 +76,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     //*
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+
         //super.onListItemClick(l, v, position, id);
         User user = mListAdapter.getItem(position);
 

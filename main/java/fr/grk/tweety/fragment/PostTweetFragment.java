@@ -120,7 +120,7 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
                     String message = params[2];
                     return new ApiClient().postTweet(handle, token, message);
                 } catch (IOException e) {
-                    Log.e(LoginFragment.class.getName(), "Login failed", e);
+                    Log.e(PostTweetFragment.class.getName(), "Login failed", e);
                     return null;
                 }
             }

@@ -5,10 +5,20 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import fr.grk.tweety.R;
 import fr.grk.tweety.activity.TweetsActivity;
 import fr.grk.tweety.adapters.TweetsAdapter;
 import fr.grk.tweety.loaders.TweetsLoader;
@@ -23,8 +33,14 @@ public class TweetsFragment extends ListFragment implements LoaderManager.Loader
 
 
     private static final int LOADER_TWEETS = 10;
-    private static final String ARG_USER  = "user";
+    private static final String ARG_USER = "user";
     private User mUser;
+
+    ImageView profilePictureView;
+    TextView handleTextView;
+    Button tweetsButton;
+    Button followingsButton;
+    Button followersButton;
 
     private TweetsAdapter mListAdapter;
 
@@ -33,10 +49,15 @@ public class TweetsFragment extends ListFragment implements LoaderManager.Loader
     }
 
 
-    public static Bundle newArguments(User user){
+    public static Bundle newArguments(User user) {
         Bundle args = new Bundle();
         args.putParcelable(ARG_USER, user);
         return args;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_tweets, container, false);
     }
 
     @Override
@@ -50,12 +71,36 @@ public class TweetsFragment extends ListFragment implements LoaderManager.Loader
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mListAdapter = new TweetsAdapter();
+        setListAdapter(mListAdapter);
+
+        //Setting up picture profile
+        profilePictureView = (ImageView) view.findViewById(R.id.profile_picture);
+        Picasso.with(view.getContext()).load(mUser.getPicture()).into(profilePictureView);
+
+        //followings count
+        followingsButton = (Button) view.findViewById(R.id.followings_button);
+        followingsButton.setText(getString(R.string.followings_count_button, mUser.getFollows()));
+
+        followingsButton.setFocusable(true);
+        followingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), getString(R.string.followings_count_button, mUser.getFollows()), Toast.LENGTH_LONG);
+            }
+        });
+
+        //followers count
+        followersButton = (Button) view.findViewById(R.id.followers_button);
+        followersButton.setText(getString(R.string.followers_count_button, mUser.getFollowers()));
+
+
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (getActivity() instanceof TweetsActivity){
+        if (getActivity() instanceof TweetsActivity) {
             getActivity().setTitle(mUser.getHandle());
         }
     }

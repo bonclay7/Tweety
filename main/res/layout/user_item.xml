@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:activatedBackgroundIndicator"
     android:padding="@dimen/padding">
 
     <ImageView
@@ -59,6 +58,8 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_marginEnd="8dp"/>
 
 
@@ -72,6 +73,8 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_marginEnd="8dp"/>
 
 </RelativeLayout>

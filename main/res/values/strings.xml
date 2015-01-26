@@ -29,6 +29,9 @@
     <string name="followings">followings : %1d</string>
     <string name="followers">followers : %1d</string>
 
+    <string name="followers_count_button">%1d\nfollowers</string>
+    <string name="followings_count_button">%1d\nfollowings</string>
+
     <string name="tweeties" type="id">Timeline</string>
     <string name="discover" type="id">Decouverte</string>
     <string name="title_activity_tweets">Tweets</string>
