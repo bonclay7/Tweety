@@ -10,6 +10,8 @@ public class AccountManager {
 
     private static final String PREF_API_TOKEN = "apiToken";
     private static final String PREF_API_HANDLE = "apiHandle";
+    public static final String P_USERS_TYPE_FOLLOWERS = "followers";
+    public static final String P_USERS_TYPE_FOLLOWINGS = "followings";
 
     public static boolean isConnected(Context context) {
         return getUserToken(context) != null;

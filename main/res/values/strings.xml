@@ -21,9 +21,19 @@
     <string name="password_confirm">Confirmation</string>
     <string name="email">e-mail</string>
     <string name="picture_url">Url Photo</string>
-    <string name="connecting">Connexion en cours ...</string>
+    <string name="connecting">Veuillez patienter svp ...</string>
     <string name="title_activity_home">Activités</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="message">Message</string>
+    <string name="dummy_section_text">Section %1d is just a dummy section.</string>
+    <string name="followings">followings : %1d</string>
+    <string name="followers">followers : %1d</string>
 
+    <string name="followers_count_button">%1d\nfollowers</string>
+    <string name="followings_count_button">%1d\nfollowings</string>
+
+    <string name="tweeties" type="id">Timeline</string>
+    <string name="discover" type="id">Decouverte</string>
+    <string name="title_activity_tweets">Tweets</string>
+    <string name="title_activity_followers">Followers</string>
 </resources>

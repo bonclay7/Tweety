@@ -18,8 +18,10 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import fr.grk.tweety.R;
+import fr.grk.tweety.activity.HomeActivity;
 import fr.grk.tweety.utils.AccountManager;
 import fr.grk.tweety.utils.ApiClient;
+import fr.grk.tweety.utils.ReloadFragmentInterface;
 
 
 public class PostTweetFragment extends DialogFragment implements DialogInterface.OnShowListener, DialogInterface.OnDismissListener {
@@ -32,7 +34,8 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
     private EditText mMessageText;
     private boolean postSucceed = false;
 
-    private OnTweetPostedListener mCallback;
+    //private OnTweetPostedListener mCallback;
+    private ReloadFragmentInterface mCallback;
 
 
     public interface OnTweetPostedListener {
@@ -45,7 +48,7 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
         super.onAttach(activity);
 
         try {
-            mCallback = (OnTweetPostedListener) activity;
+            mCallback = (ReloadFragmentInterface) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnTweetPostedListener");
         }
@@ -117,7 +120,7 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
                     String message = params[2];
                     return new ApiClient().postTweet(handle, token, message);
                 } catch (IOException e) {
-                    Log.e(LoginFragment.class.getName(), "Login failed", e);
+                    Log.e(PostTweetFragment.class.getName(), "Login failed", e);
                     return null;
                 }
             }
@@ -129,6 +132,7 @@ public class PostTweetFragment extends DialogFragment implements DialogInterface
                     if (target != null) {
                         target.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, null);
                     }
+                    //mCallback.readingListChanged();
                     mCallback.readingListChanged();
                     postSucceed = true;
                     dismiss();

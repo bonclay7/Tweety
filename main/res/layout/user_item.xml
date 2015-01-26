@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding">
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="8dp"/>
+
+    <TextView
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profile_picture"
+        android:layout_toEndOf="@id/profile_picture"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="4dp"
+        android:textStyle="bold"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/followings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profile_picture"
+        android:layout_toEndOf="@id/profile_picture"
+        android:layout_below="@id/handle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/followings"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profile_picture"
+        android:layout_toEndOf="@id/profile_picture"
+        android:layout_below="@id/followings"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/followers"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <ImageButton
+        android:id="@+id/action_follow"
+        android:background="@drawable/selector_action_follow"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_marginEnd="8dp"/>
+
+
+    <ImageButton
+        android:id="@+id/action_unfollow"
+        android:background="@drawable/selector_action_unfollow"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_marginEnd="8dp"/>
+
+</RelativeLayout>

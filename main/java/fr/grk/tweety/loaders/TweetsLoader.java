@@ -32,7 +32,7 @@ public class TweetsLoader extends AsyncTaskLoader<List<Tweet>> {
     @Override
     public List<Tweet> loadInBackground() {
         try {
-            return new ApiClient().getReadingList(mUserHandle, mToken);
+            return new ApiClient().getUserTweets(mUserHandle);
         }catch(IOException e){
             Log.e( TweetsLoader.class.getName(), "Failed to download tweets", e);
             return null;
