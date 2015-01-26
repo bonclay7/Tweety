@@ -36,4 +36,7 @@
     <string name="discover" type="id">Decouverte</string>
     <string name="title_activity_tweets">Tweets</string>
     <string name="title_activity_followers">Followers</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="unfollow_confirm">Attention, Vous allez unfollow %s !</string>
+    <string name="confirm">Confirmation</string>
 </resources>
