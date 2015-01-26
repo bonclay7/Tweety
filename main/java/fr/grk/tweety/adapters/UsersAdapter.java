@@ -166,6 +166,11 @@ public class UsersAdapter extends BaseAdapter {
                 }
             }
 
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                progressDialog.dismiss();
+            }
         }.execute(AccountManager.getUserHandle(context), followeeHandle, AccountManager.getUserToken(context));
     }
 
@@ -200,6 +205,12 @@ public class UsersAdapter extends BaseAdapter {
                 } else {
                     Toast.makeText(context, R.string.login_error, Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            @Override
+            protected void onCancelled() {
+                super.onCancelled();
+                progressDialog.dismiss();
             }
 
         }.execute(AccountManager.getUserHandle(context), followeeHandle, AccountManager.getUserToken(context));
