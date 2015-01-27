@@ -8,11 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import fr.grk.tweety.R;
+import fr.grk.tweety.model.SessionDb;
+import fr.grk.tweety.utils.AccountManager;
+import fr.grk.tweety.utils.SessionDbDataSource;
 
 public class SplashActivity extends ActionBarActivity {
 
 
     private static int SPLASH_TIME_OUT = 3000;
+    private SessionDbDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,8 @@ public class SplashActivity extends ActionBarActivity {
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
 
+        // This method will be executed once the timer is over
+        // Start main activity
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -29,16 +35,25 @@ public class SplashActivity extends ActionBarActivity {
 
             @Override
             public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
+                dataSource = new SessionDbDataSource(SplashActivity.this);
+                dataSource.open();
 
+                SessionDb userSession = dataSource.getUserSession();
+                Intent i;
+                if (userSession == null) {
+                    i = new Intent(SplashActivity.this, MainActivity.class);
+                }else{
+                    AccountManager.login(SplashActivity.this, userSession.getToken(), userSession.getHandle());
+                    i = new Intent(SplashActivity.this, HomeActivity.class);
+                }
+
+                dataSource.close();
+
+                startActivity(i);
                 // close this activity
                 finish();
             }
         }, SPLASH_TIME_OUT);
-
     }
 
 

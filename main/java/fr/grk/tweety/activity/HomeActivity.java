@@ -28,6 +28,7 @@ import fr.grk.tweety.model.User;
 import fr.grk.tweety.utils.AccountManager;
 import fr.grk.tweety.utils.ApiClient;
 import fr.grk.tweety.utils.ReloadFragmentInterface;
+import fr.grk.tweety.utils.SessionDbDataSource;
 
 public class HomeActivity extends ActionBarActivity implements ReloadFragmentInterface, ActionBar.TabListener {
 
@@ -36,6 +37,8 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
     private ViewPager mViewPager;
     private ProgressDialog progressDialog;
     private static final int TABS_COUNT = 2;
+
+    private SessionDbDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,9 +104,7 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
 
         switch (id){
             case R.id.action_settings:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                disconnect();
                 return true;
             case R.id.action_details:
                 showUserDetails();
@@ -114,6 +115,19 @@ public class HomeActivity extends ActionBarActivity implements ReloadFragmentInt
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void disconnect(){
+        dataSource = new SessionDbDataSource(this);
+        dataSource.open();
+        dataSource.deleteUserSession();
+        dataSource.close();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
     public void showUserDetails(){

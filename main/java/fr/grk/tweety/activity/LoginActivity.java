@@ -21,6 +21,7 @@ import java.io.IOException;
 import fr.grk.tweety.R;
 import fr.grk.tweety.utils.AccountManager;
 import fr.grk.tweety.utils.ApiClient;
+import fr.grk.tweety.utils.SessionDbDataSource;
 
 public class LoginActivity extends ActionBarActivity {
 
@@ -28,6 +29,7 @@ public class LoginActivity extends ActionBarActivity {
     private EditText mPasswordText;
     private ProgressDialog progressDialog;
     private Context context = this;
+    private SessionDbDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +92,10 @@ public class LoginActivity extends ActionBarActivity {
                 progressDialog.dismiss();
                 if (token != null) {
                     AccountManager.login(context, token, handle);
-                    //Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show();
+                    dataSource = new SessionDbDataSource(LoginActivity.this);
+                    dataSource.open();
+                    dataSource.saveUserSession(handle, token);
+                    dataSource.close();
                     startActivity(new Intent(context, HomeActivity.class));
                     finish();
                 } else {
