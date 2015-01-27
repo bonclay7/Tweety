@@ -27,6 +27,7 @@ import fr.grk.tweety.utils.ReloadFragmentInterface;
 /**
  * Created by grk on 24/01/15.
  */
+
 public class ShowFollowAdapter extends BaseAdapter {
 
     private List<User> mUsers;

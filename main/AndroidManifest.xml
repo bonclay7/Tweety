@@ -44,8 +44,7 @@
             android:parentActivityName="fr.grk.tweety.activity.HomeActivity" >
         </activity>
         <activity
-            android:name="fr.grk.tweety.activity.SplashActivity"
-            android:label="@string/title_activity_splash" >
+            android:name="fr.grk.tweety.activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

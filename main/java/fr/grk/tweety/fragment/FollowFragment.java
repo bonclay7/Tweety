@@ -33,10 +33,12 @@ import fr.grk.tweety.model.User;
 import fr.grk.tweety.utils.AccountManager;
 
 
+//One single fragment for followings and followers view based on ARG_USER_TYPE
 public class FollowFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<User>> {
 
     private static final int LOADER_FOLLOW = 100000;
     private static final String ARG_USER = "user";
+    //Permits to know if it's followings or followers we want to show
     private static final String ARG_USERS_TYPE = "view";
     private User mUser;
 

@@ -10,6 +10,7 @@ import fr.grk.tweety.fragment.FollowFragment;
 /**
  * Created by grk on 26/01/15.
  */
+
 public class FollowersActivity extends ActionBarActivity {
 
 
